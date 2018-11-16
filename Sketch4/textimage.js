@@ -7,8 +7,14 @@
     var img1, img2, img3, img4, img5, img6, img7;
     var images;
     
+
+
+    // Declare variable for font to be shown
+    var fontDance = "EMOTIONS";
+    var originalValue = 0;
+
     // Declare temporary image holder
-	var imageTemps;
+	  var imageTemps;
     
     // Declare variable to hold image positions
     var imagePos;
@@ -19,7 +25,7 @@
     // Declare original state of filter status as false
     var imageGray=[false,false,false, false,false,false,false]
 
-	// Declare font variables
+	  // Declare font variables
     var font1, font2, font3, font4, font5, font6, font7;
 
     function preload()
@@ -33,7 +39,7 @@
       img6 = loadImage("assets/picture6.jpg"); 
       img7 = loadImage("assets/picture7.jpg"); 
      
-	  // Declare image position based on array
+	    // Declare image position based on array
       imagePos = [0,135,270,405,540,675,810];
 
       // Load each font from assets folder
@@ -49,7 +55,11 @@
      
     function setup() 
     {
+
+      frameRate(10);
+
       createCanvas(1000, 504);
+
       // Call images through array
       images = [img1,img2,img3,img4,img5,img6,img7];
 
@@ -61,8 +71,8 @@
      
     function draw() 
     {
-      background(255);
 
+  
 
 /* Here I tried to create a blur that would fade back to the original image when you hover over with the mouse
 but it was taking too much time to load so I decided on a different route although it looked very cool graphically
@@ -83,8 +93,8 @@ but it was taking too much time to load so I decided on a different route althou
 
 
       // Filters image with a greyscale filter
-	 	for(var i=0;i<images.length;i++){
-      	imageGray[i]=1
+	 	   for(var i=0;i<images.length;i++){
+       imageGray[i]=1
 
       // Removes filters image with a greyscale filter
       	imageTemps[i].image(images[i],0,0)
@@ -166,13 +176,31 @@ but it was taking too much time to load so I decided on a different route althou
       	//If mouse is on the image the filter will be removed, if mouse is not on the image the filter will be triggered
       	if ( mouseX>imagePos[i] &&  mouseX<imagePos[i] +images[i].width &&
       		 mouseY>0 &&  mouseY<images[i].height){
-			imageStatus[i]=true
- 			imageGray[i]=true
+			     imageStatus[i]=true
+ 			     imageGray[i]=true
 			
-      	}else{
-			imageStatus[i]=false
- 			imageGray[i]=false
+      	 }else{
+			   imageStatus[i]=false
+ 			   imageGray[i]=false
       	}
+
+        //Set color, size of dancing font
+        fill(random(255), random(255), random(255));
+        textSize(95);
+
+        //Create substring so that copy in the variable fontDance uses a specific number of characters to move through the word and here we declare its position as well
+        text(
+        fontDance.substring(originalValue, originalValue+8),
+        210, 470);
+
+        //Increase originalValue and rotate through the characters
+        originalValue++;
+
+        // Here we are saying that if the length of the string is greater than the originalValue, restart the string
+        if (originalValue > fontDance.length) {
+        originalValue = 0;
+        }    
+
 
       }
 

@@ -185,7 +185,7 @@ but it was taking too much time to load so I decided on a different route althou
       	}
 
         //Set color, size of dancing font
-        fill(random(255), random(255), random(255));
+        fill(random(255), random(255), random(255), 120);
         textSize(95);
 
         //Create substring so that copy in the variable fontDance uses a specific number of characters to move through the word and here we declare its position as well
